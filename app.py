@@ -1,8 +1,6 @@
 import streamlit as st
 import time
 
-'Starting a long computation...'
-
 time_set = st.slider("Set time (minutes)", 1, 60, 25)
 rest_time = st.slider("Set rest time (minutes)", 1, 30, 5)
 
