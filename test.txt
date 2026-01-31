@@ -1,6 +1,1 @@
-<<<<<<< Updated upstream
-yes, this is test!
-thankyou!!!!!
-=======
-Yes,This is test!
->>>>>>> Stashed changes
+aaaaaaa
