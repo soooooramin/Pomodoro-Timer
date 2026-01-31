@@ -3,7 +3,6 @@ import time
 
 'Starting a long computation...'
 
-# Add a placeholder
 if 'current_seconds' not in st.session_state:
     st.session_state.current_seconds = 0
 
