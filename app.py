@@ -1,6 +1,15 @@
 import streamlit as st
 import time
 
+st.set_page_config(
+    page_title="Pomodoro Timer",
+    page_icon="👋",
+)
+
+st.sidebar.success("Select a demo above.")
+
+st.write("# Welcome to Pomodoro Timer! 👋")
+
 time_set = st.slider("Set time (minutes)", 1, 60, 25)
 rest_time = st.slider("Set rest time (minutes)", 1, 30, 5)
 
@@ -17,5 +26,3 @@ if st.button("Start Timer"):
         latest_iteration.text(f'Rest Time {rest_time * 60 - j}')
         bar.progress((rest_time * 60 - j) / (rest_time * 60))
         time.sleep(1)
-
-
