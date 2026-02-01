@@ -1,6 +1,6 @@
 import streamlit as st
 
-# セッション状態を共
+#
 if 'todo_items' not in st.session_state: st.session_state.todo_items = []
 
 st.markdown("""
