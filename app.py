@@ -23,6 +23,7 @@ def get_circular_progress_html(percent, label):
     </div>
     """
 
+
 # タイマー表示用の場所を確保
 status_text = st.empty()
 timer_placeholder = st.empty()
