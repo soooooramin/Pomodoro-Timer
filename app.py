@@ -23,7 +23,6 @@ def get_circular_progress_html(percent, label):
     </div>
     """
 
-
 # タイマー表示用の場所を確保
 status_text = st.empty()
 timer_placeholder = st.empty()
@@ -44,7 +43,45 @@ with col2:
 
 if st.button("Start Timer"):
     
-    for j in range(rest_time * 60):
-        latest_iteration.text(f'Rest Time {rest_time * 60 - j}')
-        bar.progress((rest_time * 60 - j) / (rest_time * 60))
-        time.sleep(1)
+    # --- 1. 作業時間のカウントダウン ---
+    status_text.info("💻 Working...")
+    total_seconds = work_min * 60
+    
+    for i in range(total_seconds + 1):
+        # 経過時間の計算
+        percent = (i / total_seconds) * 100
+        remaining_seconds = total_seconds - i
+        
+        # "分:秒" の形式に変換 (例 24:59)
+        mins, secs = divmod(remaining_seconds, 60)
+        time_label = f"{mins:02d}:{secs:02d}"
+        
+        # HTMLを生成して表示更新
+        timer_placeholder.markdown(
+            get_circular_progress_html(percent, time_label), 
+            unsafe_allow_html=True
+        )
+        time.sleep(0.01) # 1秒待つ（テスト時は 0.01 などにすると早送りできます）
+
+    # --- 2. 休憩時間のカウントダウン ---
+    status_text.success("☕ Break Time!")
+    total_seconds = rest_min * 60
+    
+    for i in range(total_seconds + 1):
+        percent = (i / total_seconds) * 100
+        remaining_seconds = total_seconds - i
+        
+        mins, secs = divmod(remaining_seconds, 60)
+        time_label = f"{mins:02d}:{secs:02d}"
+        
+        # 色を変えたい場合は HTML関数の #4CAF50 を別の色コードに変えてみてください
+        timer_placeholder.markdown(
+            get_circular_progress_html(percent, time_label), 
+            unsafe_allow_html=True
+        )
+        time.sleep(0.01)
+
+    status_text.warning("⏰ All Done!")
+
+if st.button("Timer Stop"):
+    timer_placeholder.markdown(get_circular_progress_html(0,"00:00"),unsafe_allow_html=True)
