@@ -63,7 +63,7 @@ st.markdown("""
 
 if not st.session_state.running and st.session_state.last_stop_time is not None:
     elapsed = (nihonzikan() - st.session_state.last_stop_time).total_seconds()
-    if elapsed >= 5: #テスト用（本番は300） 
+    if elapsed >= 300: #テスト用（本番は300） 
         s_final = st.session_state.total_study_sec + (st.session_state.count if st.session_state.phase == "WORK" else 0)
         r_final = st.session_state.total_rest_sec + (st.session_state.count if st.session_state.phase == "REST" else 0)
         save_log(s_final, r_final)
@@ -143,7 +143,7 @@ with center_col:
 if st.session_state.running:
     if st.session_state.count < total_sec:
         time.sleep(1)
-        st.session_state.count += 60 #テスト用（本番は１）
+        st.session_state.count += 1 #テスト用（本番は１）
         st.rerun()
     else:
         if st.session_state.phase == "WORK":
