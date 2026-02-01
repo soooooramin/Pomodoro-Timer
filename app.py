@@ -26,7 +26,7 @@ def save_log(study_sec, rest_sec):
     if st.session_state.start_dt is None:
         return
     syuryo_dt = nihonzikan()
-    file_path = 'rireki.csv'
+    file_path = 'Pages/data/rireki.csv'
     file_ari = os.path.isfile(file_path)
     no_count = 1
     if file_ari:
